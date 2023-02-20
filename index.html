@@ -1,255 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cursed Text Generator</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma-rtl.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Black+Ops+One&family=Bungee+Inline&family=Bungee+Shade&family=Cinzel&family=Creepster&family=Dancing+Script&family=Eater&family=Fredericka+the+Great&family=Homemade+Apple&family=Monoton&family=Monsieur+La+Doulaise&family=Mrs+Saint+Delafield&family=Nabla&family=Nerko+One&family=Orbitron&family=Pirata+One&family=Press+Start+2P&family=Rock+Salt&family=Rubik+Burned&family=Rubik+Dirt&family=Rubik+Glitch&family=Rubik+Marker+Hatch&family=Rubik+Microbe&family=Stint+Ultra+Condensed&family=UnifrakturMaguntia&display=swap"
         rel="stylesheet">
-    <script src="index.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/jquery.1.8.3.min.js"></script>
+    <script src="js/script.js"></script>
+
 </head>
 
-<body onload="Dyanamictext();Showdata()">
-    <div class="container card mt-5 mb-5">
-        <div>
-            <center>
-                <div style="width:50vw;">
-                    <h1 class="has-text-weight-bold is-size-3">Enter your text here !</h1>
-                    <textarea class="textarea is-normal mt-5" id="input" rows="5" placeholder="Enter text here"
-                        onkeyup="Showdata()"></textarea>
-                </div>
-            </center>
-
-            <div id="cards">
-                <div class="columns mt-2 is-3 is-variable mx-3">
-                    <div class="column is-centered">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3" style="font-family: 'Rubik Microbe', cursive;"
-                                    id="card0">
-                                </h1>
-                            </div>
-                        </div>
+<body class="bg-primary" onload="GenerateCard()">
+    <div id="tab_text" class="tab">
+        <div class="content">
+            <section id="text_panel_creepify" class="container">
+                <h1 class="title has-text-centered">Crazy Text Generator </h1>
+                <div id="tab_text" class="columns">
+                    <div class="column">
+                        <h1 class="has-text-centered">Input</h1>
+                        <textarea name="plain" id="input" onkeyup="Showdata()" class="textarea is-primary"
+                            placeholder="Primary textarea"></textarea>
                     </div>
                     <div class="column">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3"
-                                    style="font-family: 'Rubik Marker Hatch', cursive;" id="card1"></h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3" class="font-family: 'Rubik Glitch', cursive;"
-                                    id="card2">
-                                </h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3" style="font-family: 'Rubik Dirt', cursive;"
-                                    id="card3">
-                                </h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3" style="font-family: 'Rock Salt', cursive;"
-                                    id="card4">
-                                </h1>
-                            </div>
-                        </div>
+                        <h1 class="has-text-centered">Output</h1>
+                        <textarea name="encoded" class="textarea is-link" placeholder="Link textarea"></textarea>
                     </div>
                 </div>
-                <div class="columns mt-2 is-3 is-variable mx-3" style="font-family: 'Press Start 2P', cursive;">
-                    <div class="column is-centered">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3" id="card5"
-                                    style="font-family: 'Orbitron', sans-serif;">
-                                </h1>
-                            </div>
-                        </div>
+                <div class="columns">
+                    <div class="column">
+                        <p>
+                            <input type="checkbox" name="top" value="" id="creepify_check_top"><label
+                                for="creepify_check_top"> Top</label>
+                            <input type="checkbox" class="ml-2 checkbox" name="middle" value="" id="creepify_check_middle"><label
+                                for="creepify_check_middle"> Middle</label>
+                        
+                            <input type="checkbox" class="ml-2" name="bottom" value="" id="creepify_check_bottom"><label
+                                for="creepify_check_bottom"> Bottom</label>
+                        </p>
                     </div>
                     <div class="column">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3" style="font-family: 'Nerko One', cursive;"
-                                    id="card6">
-                                </h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3" style="font-family: 'Monoton', cursive;"
-                                    id="card7"></h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3"
-                                    style="font-family: 'Fredericka the Great', cursive;" id="card8"></h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3" style="font-family: 'Dancing Script', cursive;"
-                                    id="card9"></h1>
-                            </div>
-                        </div>
+                        <p>
+                            <label for="creepify_maxHeight">Max. Height</label><br>
+                            <input type="range"  id="creepify_maxHeight" min="1" max="100" class="slider is-fullwidth is-success" step="1">
+                        </p>
+                        <p>
+                            <label for="creepify_randomization">Height Randomization</label><br>
+                            <input type="range" id="creepify_randomization"  min="1" max="100" step="1">
+                            
+                        </p>
                     </div>
                 </div>
-                <div class="columns mt-2 is-3 is-variable mx-3" style="font-family: 'Press Start 2P', cursive;">
-                    <div class="column is-centered">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3" id="card10"
-                                    style="font-family: 'UnifrakturMaguntia', cursive;">
-                                </h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3"
-                                    style="font-family: 'Mrs Saint Delafield', cursive;" id="card11">
-                                </h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3" style="font-family: 'Pirata One', cursive;"
-                                    id="card12"></h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3" style="font-family: 'Homemade Apple', cursive;"
-                                    id="card13"></h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3" style="font-family: 'Nabla', cursive;"
-                                    id="card14"></h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="columns mt-2 is-3 is-variable mx-3" style="font-family: 'Press Start 2P', cursive;">
-                    <div class="column is-centered">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3" id="card15"
-                                    style="font-family: 'Bungee Shade', cursive;">
-                                </h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3"
-                                    style="font-family: 'UnifrakturMaguntia', cursive;" id="card16">
-                                </h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3" style="font-family: 'Pirata One', cursive;"
-                                    id="card17"></h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3" style="font-family: 'Rubik Burned', cursive;"
-                                    id="card18"></h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3" style="font-family: 'Eater', cursive;"
-                                    id="card19"></h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="columns mt-2 is-3 is-variable mx-3 pb-4">
-                    <div class="column is-centered">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3" style="font-family: 'Cinzel', serif;"
-                                    id="card20"></h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3" style="font-family: 'Bungee Inline', cursive;"
-                                    id="card21"></h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3" style="font-family: 'Black Ops One', cursive;"
-                                    id="card22"></h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3"
-                                    style="font-family: 'BhuTuka Expanded One', cursive;" id="card23"></h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="card">
-                            <div class="card-content">
-                                <h1 class="has-text-centered is-size-3" style="font-family: 'Creepster', cursive;"
-                                    id="card24"></h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </section>
         </div>
+    </div>
+    <div class="columns mt-5 is-multiline is-centered" id="cards">
     </div>
 </body>
 
